@@ -1,6 +1,6 @@
-# HRIS Connector - Demo Website
+# MergeSpark - Demo Website
 
-A minimal, clean demo website inspired by Anthropic's design aesthetic, showcasing an HRIS (Human Resources Information System) connector service.
+A minimal, clean demo website showcasing MergeSpark's help center creation service and HRIS (Human Resources Information System) connector.
 
 ## 🚀 Quick Start
 
@@ -51,9 +51,10 @@ If you're using VS Code:
 ## 📁 Project Structure
 
 ```
-windler2/
-├── index.html          # Main HTML file
-├── styles.css          # CSS styles with Anthropic-inspired design
+windler/
+├── index.html          # Main homepage for MergeSpark
+├── hris-site.html      # HRIS connector demo page
+├── styles.css          # CSS styles with modern design
 ├── script.js           # JavaScript for interactions and animations
 └── README.md           # This file
 ```
@@ -67,17 +68,16 @@ windler2/
 - **Responsive Design**: Works perfectly on desktop, tablet, and mobile
 
 ### Interactive Features
-- **Smooth Scrolling**: Navigation links smoothly scroll to sections
-- **Demo Modal**: Click any "Get Demo" or "Get Started" button to see the demo form
-- **Hover Effects**: Subtle animations on buttons and cards
-- **Scroll Animations**: Elements fade in as you scroll down the page
+- **Help Center Generator**: Enter any website URL to create a modern help center
+- **Category Selection**: Choose from various integration categories (HRIS, CRM, etc.)
+- **Loading Animation**: Beautiful loading screen with progress indicators
+- **Dynamic Theming**: Automatically applies company-specific themes
 
-### Sections
-1. **Hero Section**: Main value proposition with visual diagram
-2. **Features**: Key benefits of the HRIS connector
-3. **Integration Process**: Step-by-step setup guide
-4. **Testimonial**: Customer feedback
-5. **Call-to-Action**: Demo request section
+### Main Features
+1. **Homepage (index.html)**: MergeSpark help center creation tool
+2. **HRIS Demo (hris-site.html)**: Sample HRIS connector showcase
+3. **Responsive Design**: Works on all devices
+4. **Modern UI**: Clean, professional interface
 
 ## 🛠️ Customization
 
@@ -89,9 +89,9 @@ The color scheme is defined in `styles.css`:
 - Accent: `#f8f9fa` (Light gray)
 
 ### Content
-- Edit `index.html` to modify text content
-- Update company information, features, and testimonials
-- Add or remove sections as needed
+- Edit `index.html` to modify the main MergeSpark interface
+- Update `hris-site.html` to customize the HRIS connector demo
+- Modify company information, features, and testimonials as needed
 
 ### Styling
 - Modify `styles.css` to change appearance
@@ -113,14 +113,14 @@ The color scheme is defined in `styles.css`:
 - Safari 12+
 - Edge 79+
 
-## 🎯 Design Inspiration
+## 🎯 Design Philosophy
 
-This website draws inspiration from Anthropic's design philosophy:
+MergeSpark features a modern, professional design approach:
 - Clean, minimal aesthetic
 - Focus on typography and white space
 - Subtle, purposeful animations
 - Professional yet approachable tone
-- Technical content presented clearly
+- User-friendly interface for technical products
 
 ## 📄 License
 
@@ -128,4 +128,4 @@ This is a demo project created for educational purposes.
 
 ---
 
-**Enjoy exploring the HRIS Connector demo! 🚀**
+**Enjoy exploring MergeSpark! 🚀**
