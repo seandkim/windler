@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const company = urlParams.get('company');
         const theme = urlParams.get('theme');
         const originalUrl = urlParams.get('url');
+        const includeMerge = urlParams.get('includeMerge') === 'true';
         
         if (company && theme) {
             // Update company branding
@@ -15,6 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Apply theme colors
             applyThemeColors(theme);
+            
+            // Handle Merge branding
+            handleMergeBranding(includeMerge);
         }
     }
     
@@ -107,6 +111,23 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Add theme class to body for additional styling if needed
         document.body.className = `theme-${theme}`;
+    }
+    
+    function handleMergeBranding(includeMerge) {
+        const poweredByElement = document.querySelector('.powered-by');
+        
+        if (includeMerge) {
+            // Show "Powered by Merge" if checkbox was checked
+            if (poweredByElement) {
+                poweredByElement.innerHTML = '<span>Powered by</span><strong>Merge</strong>';
+                poweredByElement.style.display = 'flex';
+            }
+        } else {
+            // Hide the "Powered by" section if checkbox was unchecked
+            if (poweredByElement) {
+                poweredByElement.style.display = 'none';
+            }
+        }
     }
     // Smooth scrolling for anchor links
     const navLinks = document.querySelectorAll('a[href^="#"]');

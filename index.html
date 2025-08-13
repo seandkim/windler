@@ -100,6 +100,54 @@
             color: #999;
         }
 
+        .checkbox-container {
+            margin: 16px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 14px;
+            color: #6b46c1;
+            gap: 8px;
+        }
+
+        .merge-checkbox {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #8b5cf6;
+            border-radius: 4px;
+            background: transparent;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .merge-checkbox:checked {
+            background: #8b5cf6;
+            border-color: #8b5cf6;
+        }
+
+        .merge-checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .merge-checkbox:hover {
+            border-color: #7c3aed;
+            transform: scale(1.05);
+        }
+
         .create-btn {
             width: 100%;
             padding: 16px 24px;
@@ -267,6 +315,13 @@
                     placeholder="https://example.com/help-center"
                     required
                 >
+                <div class="checkbox-container">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="includeMerge" class="merge-checkbox" checked>
+                        <span class="checkmark"></span>
+                        Include Merge branding
+                    </label>
+                </div>
                 <button type="submit" class="create-btn" id="createBtn">
                     Create Help Center
                 </button>
@@ -307,6 +362,9 @@
 
                 // Extract company info from URL
                 const companyInfo = extractCompanyInfo(url);
+                
+                // Get checkbox state
+                const includeMerge = document.getElementById('includeMerge').checked;
 
                 // Show loading screen
                 showLoadingScreen(companyInfo.name);
@@ -317,7 +375,8 @@
                     const params = new URLSearchParams({
                         company: companyInfo.name,
                         theme: companyInfo.theme,
-                        url: url
+                        url: url,
+                        includeMerge: includeMerge.toString()
                     });
                     window.location.href = `hris-site.html?${params.toString()}`;
                 }, 3500); // 3.5 seconds loading time
