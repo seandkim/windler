@@ -1,6 +1,11 @@
 # MergeSpark - Demo Website
 
-A minimal, clean demo website showcasing MergeSpark's help center creation service and HRIS (Human Resources Information System) connector.
+A minimal, clean demo website showcasing MergeSpark's help center creation service.
+
+## ⚠️ Disclaimers
+
+- All of the content in this repo has been vibe-coded
+- Hard-coded two use cases: Anthropic and Box (For other scenarios, it is not guarantee to fetch the correct company name)
 
 ## 🚀 Quick Start
 
