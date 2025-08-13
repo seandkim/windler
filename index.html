@@ -3,192 +3,363 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anthropic HRIS Connector - Seamless HR Data Integration</title>
+    <title>Help with the Help Center - Anthropic</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #fefefe 0%, #f8f8f8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 0 24px;
+        }
+
+        .main-card {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .logo svg {
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover svg {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #6a6a6a;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .form-container {
+            margin-bottom: 32px;
+        }
+
+        .url-input {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 16px;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            background: #fafafa;
+            transition: all 0.2s ease;
+            margin-bottom: 24px;
+        }
+
+        .url-input:focus {
+            outline: none;
+            border-color: #1a1a1a;
+            background: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .url-input::placeholder {
+            color: #999;
+        }
+
+        .create-btn {
+            width: 100%;
+            padding: 16px 24px;
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .create-btn:hover {
+            background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .create-btn:active {
+            transform: translateY(0);
+        }
+
+        .create-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .example-text {
+            font-size: 14px;
+            color: #999;
+            margin-top: 16px;
+        }
+
+        /* Loading Screen Styles */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: white;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .loading-screen.active {
+            display: flex;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #1a1a1a;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 24px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 18px;
+            color: #6a6a6a;
+            margin-bottom: 8px;
+        }
+
+        .loading-subtext {
+            font-size: 14px;
+            color: #999;
+        }
+
+        .progress-bar {
+            width: 300px;
+            height: 4px;
+            background: #f0f0f0;
+            border-radius: 2px;
+            margin-top: 24px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #1a1a1a;
+            border-radius: 2px;
+            width: 0%;
+            animation: progress 3s ease-in-out;
+        }
+
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 60%; }
+            100% { width: 100%; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-card {
+                padding: 40px 24px;
+                margin: 20px;
+            }
+
+            .title {
+                font-size: 28px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .progress-bar {
+                width: 250px;
+            }
+        }
+
+        /* Fade in animation */
+        .main-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-logo">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div class="container">
+        <div class="main-card">
+            <div class="logo">
+                <svg width="40" height="40" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="32" height="32" rx="16" fill="#1a1a1a"/>
                     <path d="M16 8L20 12H18V20H14V12H12L16 8Z" fill="white"/>
                     <circle cx="16" cy="22" r="2" fill="white"/>
                 </svg>
                 <span class="logo-text">Anthropic</span>
-                <span class="product-name">HRIS Connector</span>
             </div>
-            <div class="nav-links">
-                <a href="#features">Features</a>
-                <a href="#integration">Integration</a>
-                <a href="#contact">Contact</a>
-                <button class="btn-demo">Get Demo</button>
-            </div>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    Seamless HRIS Integration
-                </h1>
-                <p class="hero-subtitle">
-                    Effortlessly connect your HR systems to unlock powerful insights 
-                    from the people data you already have.
-                </p>
-                <div class="powered-by">
-                    <span>Powered by</span>
-                    <strong>Anthropic</strong>
-                </div>
-                <div class="hero-actions">
-                    <button class="btn-primary">Get Started</button>
-                    <button class="btn-secondary">Learn More</button>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="integration-diagram">
-                    <div class="data-source">
-                        <div class="icon">👥</div>
-                        <span>HRIS Data</span>
-                    </div>
-                    <div class="connector">
-                        <div class="flow-line"></div>
-                        <div class="connector-icon">⚡</div>
-                    </div>
-                    <div class="insights">
-                        <div class="icon">📊</div>
-                        <span>Insights</span>
-                    </div>
-                </div>
-            </div>
+            <h1 class="title">Help with the Help Center</h1>
+            <p class="subtitle">
+                Enter the URL of any website and we'll create a beautiful, 
+                modern help center experience powered by AI.
+            </p>
+
+            <form class="form-container" id="urlForm">
+                <input 
+                    type="url" 
+                    class="url-input" 
+                    id="urlInput"
+                    placeholder="https://example.com/help-center"
+                    required
+                >
+                <button type="submit" class="create-btn" id="createBtn">
+                    Create Help Center
+                </button>
+            </form>
+
+            <p class="example-text">
+                Try: https://www.15five.com/hris-connector/
+            </p>
         </div>
-    </section>
+    </div>
 
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <h2 class="section-title">Why Choose Our HRIS Connector?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3>Automated Sync</h3>
-                    <p>Keep your data up-to-date with automatic synchronization that runs seamlessly in the background.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Enterprise Security</h3>
-                    <p>Bank-level encryption and compliance with industry standards to keep your sensitive HR data protected.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📈</div>
-                    <h3>Powerful Analytics</h3>
-                    <p>Transform raw HR data into actionable insights with our advanced analytics and reporting tools.</p>
-                </div>
-            </div>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Analyzing your website...</div>
+        <div class="loading-subtext">Creating a beautiful help center experience</div>
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
         </div>
-    </section>
+    </div>
 
-    <!-- Integration Section -->
-    <section id="integration" class="integration">
-        <div class="container">
-            <div class="integration-content">
-                <div class="integration-text">
-                    <h2>Simple Integration Process</h2>
-                    <p>Connect your HRIS in minutes, not weeks. Our streamlined setup process gets you up and running quickly.</p>
-                    <div class="integration-steps">
-                        <div class="step">
-                            <span class="step-number">1</span>
-                            <div class="step-content">
-                                <h4>Connect</h4>
-                                <p>Link your existing HRIS system</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <span class="step-number">2</span>
-                            <div class="step-content">
-                                <h4>Configure</h4>
-                                <p>Set up data mapping and sync preferences</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <span class="step-number">3</span>
-                            <div class="step-content">
-                                <h4>Analyze</h4>
-                                <p>Start gaining insights from your HR data</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="integration-visual">
-                    <div class="supported-systems">
-                        <h4>Supported HRIS Systems</h4>
-                        <div class="systems-grid">
-                            <div class="system">Workday</div>
-                            <div class="system">BambooHR</div>
-                            <div class="system">ADP</div>
-                            <div class="system">Greenhouse</div>
-                            <div class="system">Lever</div>
-                            <div class="system">+ Many More</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('urlForm');
+            const urlInput = document.getElementById('urlInput');
+            const createBtn = document.getElementById('createBtn');
+            const loadingScreen = document.getElementById('loadingScreen');
 
-    <!-- Testimonial Section -->
-    <section class="testimonial">
-        <div class="container">
-            <div class="testimonial-content">
-                <blockquote>
-                    "Integrating our HRIS data was a very smooth process. Everything worked perfectly, and we were able to unlock insights we never had access to before."
-                </blockquote>
-                <div class="testimonial-author">
-                    <div class="author-info">
-                        <strong>Mary Sajfar</strong>
-                        <span>VP Operations Training and Development</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            // Form submission handler
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const url = urlInput.value.trim();
+                if (!url) {
+                    alert('Please enter a valid URL');
+                    return;
+                }
 
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to unlock your HR data insights?</h2>
-                <p>Join hundreds of companies already using our HRIS connector to make data-driven HR decisions.</p>
-                <button class="btn-primary">Schedule a Demo</button>
-            </div>
-        </div>
-    </section>
+                // Show loading screen
+                showLoadingScreen();
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="32" height="32" rx="16" fill="#666"/>
-                        <path d="M16 8L20 12H18V20H14V12H12L16 8Z" fill="white"/>
-                        <circle cx="16" cy="22" r="2" fill="white"/>
-                    </svg>
-                    <span>Anthropic HRIS Connector</span>
-                </div>
-                <div class="footer-links">
-                    <a href="#privacy">Privacy Policy</a>
-                    <a href="#terms">Terms of Service</a>
-                    <a href="#support">Support</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+                // Simulate processing time and redirect to HRIS site
+                setTimeout(() => {
+                    window.location.href = 'hris-site.html';
+                }, 3500); // 3.5 seconds loading time
+            });
 
-    <script src="script.js"></script>
+            function showLoadingScreen() {
+                loadingScreen.classList.add('active');
+                document.body.style.overflow = 'hidden';
+
+                // Update loading text over time
+                const loadingTexts = [
+                    { text: "Analyzing your website...", subtext: "Reading content and structure" },
+                    { text: "Designing your help center...", subtext: "Applying Anthropic's design principles" },
+                    { text: "Almost ready...", subtext: "Finalizing your beautiful help center" }
+                ];
+
+                const textElement = loadingScreen.querySelector('.loading-text');
+                const subtextElement = loadingScreen.querySelector('.loading-subtext');
+
+                loadingTexts.forEach((textObj, index) => {
+                    setTimeout(() => {
+                        textElement.textContent = textObj.text;
+                        subtextElement.textContent = textObj.subtext;
+                    }, (index + 1) * 1000);
+                });
+            }
+
+            // Add some nice input effects
+            urlInput.addEventListener('input', function() {
+                if (this.value.trim()) {
+                    createBtn.style.background = '#1a1a1a';
+                } else {
+                    createBtn.style.background = '#ccc';
+                }
+            });
+
+            // Auto-focus on input
+            urlInput.focus();
+
+            // Add enter key support
+            urlInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    form.dispatchEvent(new Event('submit'));
+                }
+            });
+        });
+    </script>
 </body>
 </html>
