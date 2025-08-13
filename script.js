@@ -1,5 +1,113 @@
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function() {
+    // Apply dynamic theming based on URL parameters
+    applyDynamicTheming();
+    
+    function applyDynamicTheming() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const company = urlParams.get('company');
+        const theme = urlParams.get('theme');
+        const originalUrl = urlParams.get('url');
+        
+        if (company && theme) {
+            // Update company branding
+            updateCompanyBranding(company);
+            
+            // Apply theme colors
+            applyThemeColors(theme);
+        }
+    }
+    
+    function updateCompanyBranding(company) {
+        // Update logo text
+        const logoTexts = document.querySelectorAll('.logo-text');
+        logoTexts.forEach(logoText => {
+            logoText.textContent = company;
+        });
+        
+        // Update page title
+        document.title = `${company} HRIS Connector - Seamless HR Data Integration`;
+        
+        // Update footer text
+        const footerLogo = document.querySelector('.footer-logo span');
+        if (footerLogo) {
+            footerLogo.textContent = `${company} HRIS Connector`;
+        }
+        
+        // Update powered by text
+        const poweredBy = document.querySelector('.powered-by strong');
+        if (poweredBy) {
+            poweredBy.textContent = company;
+        }
+    }
+    
+    function applyThemeColors(theme) {
+        const root = document.documentElement;
+        
+        // Theme color mappings
+        const themes = {
+            anthropic: {
+                '--primary-color': '#1a1a1a',
+                '--background-color': '#f5f4f0',
+                '--accent-color': '#e67e22',
+                '--secondary-bg': '#ebe9e4',
+                '--card-bg': '#ffffff',
+                '--border-color': '#e8e6e0',
+                '--text-primary': '#1a1a1a',
+                '--text-secondary': '#6a6a6a'
+            },
+            box: {
+                '--primary-color': '#0061d5',
+                '--background-color': '#f8f9ff',
+                '--accent-color': '#0047ab',
+                '--secondary-bg': '#e8f2ff',
+                '--card-bg': '#ffffff',
+                '--border-color': '#d1e7ff',
+                '--text-primary': '#1a1a1a',
+                '--text-secondary': '#4a5568'
+            },
+            fifteenfive: {
+                '--primary-color': '#6c5ce7',
+                '--background-color': '#f8f7ff',
+                '--accent-color': '#a29bfe',
+                '--secondary-bg': '#e8e6ff',
+                '--card-bg': '#ffffff',
+                '--border-color': '#d4d1f9',
+                '--text-primary': '#1a1a1a',
+                '--text-secondary': '#6a6a6a'
+            },
+            slack: {
+                '--primary-color': '#4a154b',
+                '--background-color': '#f8f8f8',
+                '--accent-color': '#e01e5a',
+                '--secondary-bg': '#f4ede4',
+                '--card-bg': '#ffffff',
+                '--border-color': '#e8e6e0',
+                '--text-primary': '#1a1a1a',
+                '--text-secondary': '#6a6a6a'
+            },
+            default: {
+                '--primary-color': '#1a1a1a',
+                '--background-color': '#f5f4f0',
+                '--accent-color': '#e67e22',
+                '--secondary-bg': '#ebe9e4',
+                '--card-bg': '#ffffff',
+                '--border-color': '#e8e6e0',
+                '--text-primary': '#1a1a1a',
+                '--text-secondary': '#6a6a6a'
+            }
+        };
+        
+        const themeColors = themes[theme] || themes.default;
+        
+        // Apply CSS variables
+        Object.entries(themeColors).forEach(([property, value]) => {
+            root.style.setProperty(property, value);
+        });
+        
+        // Add theme class to body for additional styling if needed
+        document.body.className = `theme-${theme}`;
+    }
     // Smooth scrolling for anchor links
     const navLinks = document.querySelectorAll('a[href^="#"]');
     navLinks.forEach(link => {

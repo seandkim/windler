@@ -305,23 +305,115 @@
                     return;
                 }
 
+                // Extract company info from URL
+                const companyInfo = extractCompanyInfo(url);
+
                 // Show loading screen
-                showLoadingScreen();
+                showLoadingScreen(companyInfo.name);
 
                 // Simulate processing time and redirect to HRIS site
                 setTimeout(() => {
-                    window.location.href = 'hris-site.html';
+                    // Pass company info as URL parameters
+                    const params = new URLSearchParams({
+                        company: companyInfo.name,
+                        theme: companyInfo.theme,
+                        url: url
+                    });
+                    window.location.href = `hris-site.html?${params.toString()}`;
                 }, 3500); // 3.5 seconds loading time
             });
 
-            function showLoadingScreen() {
+            // Extract company information from URL
+            function extractCompanyInfo(url) {
+                try {
+                    const urlObj = new URL(url);
+                    const domain = urlObj.hostname.toLowerCase().replace('www.', '');
+                    
+                    // Company mappings
+                    const companyMappings = {
+                        'anthropic.com': {
+                            name: 'Anthropic',
+                            theme: 'anthropic',
+                            colors: {
+                                primary: '#1a1a1a',
+                                background: '#f5f4f0',
+                                accent: '#e67e22',
+                                secondary: '#ebe9e4'
+                            }
+                        },
+                        'box.com': {
+                            name: 'Box',
+                            theme: 'box',
+                            colors: {
+                                primary: '#0061d5',
+                                background: '#f8f9ff',
+                                accent: '#0047ab',
+                                secondary: '#e8f2ff'
+                            }
+                        },
+                        '15five.com': {
+                            name: '15Five',
+                            theme: 'fifteenfive',
+                            colors: {
+                                primary: '#6c5ce7',
+                                background: '#f8f7ff',
+                                accent: '#a29bfe',
+                                secondary: '#e8e6ff'
+                            }
+                        },
+                        'slack.com': {
+                            name: 'Slack',
+                            theme: 'slack',
+                            colors: {
+                                primary: '#4a154b',
+                                background: '#f8f8f8',
+                                accent: '#e01e5a',
+                                secondary: '#f4ede4'
+                            }
+                        }
+                    };
+
+                    // Find matching company or use default
+                    for (const [domainPattern, info] of Object.entries(companyMappings)) {
+                        if (domain.includes(domainPattern.replace('.com', ''))) {
+                            return info;
+                        }
+                    }
+
+                    // Default fallback
+                    return {
+                        name: 'Company',
+                        theme: 'default',
+                        colors: {
+                            primary: '#1a1a1a',
+                            background: '#f5f4f0',
+                            accent: '#e67e22',
+                            secondary: '#ebe9e4'
+                        }
+                    };
+                } catch (error) {
+                    // If URL parsing fails, return default
+                    return {
+                        name: 'Company',
+                        theme: 'default',
+                        colors: {
+                            primary: '#1a1a1a',
+                            background: '#f5f4f0',
+                            accent: '#e67e22',
+                            secondary: '#ebe9e4'
+                        }
+                    };
+                }
+            }
+
+            function showLoadingScreen(companyName = 'Company') {
                 loadingScreen.classList.add('active');
                 document.body.style.overflow = 'hidden';
 
                 // Update loading text over time
                 const loadingTexts = [
                     { text: "Analyzing your website...", subtext: "Reading content and structure" },
-                    { text: "Designing your help center...", subtext: "Applying Anthropic's design principles" },
+                    { text: "Designing your help center...", subtext: `Applying ${companyName}'s design principles` },
                     { text: "Almost ready...", subtext: "Finalizing your beautiful help center" }
                 ];
 
