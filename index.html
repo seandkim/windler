@@ -79,11 +79,13 @@
         }
 
         .title {
-            font-size: 60px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-size: 32px;
             font-weight: 400;
             color: #3c4043;
             margin-bottom: 8px;
-            letter-spacing: -0.02em;
+            margin-top: 20px;
+            letter-spacing: -0.01em;
         }
 
         .title-accent {
@@ -93,8 +95,11 @@
         .subtitle {
             font-size: 16px;
             color: #70757a;
-            margin-bottom: 35px;
+            margin-bottom: 30px;
             line-height: 1.4;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .search-container {
@@ -391,6 +396,12 @@
                      style="object-fit: contain;">
             </div>
 
+            <h1 class="title">Help with the Help Center</h1>
+            <p class="subtitle">
+                Enter the URL of any website and we'll create a beautiful, 
+                modern help center experience powered by AI.
+            </p>
+
             <div class="search-container">
                 <form id="urlForm">
                     <div class="search-box">
@@ -410,9 +421,6 @@
                 <div class="button-group">
                     <button type="submit" form="urlForm" class="btn-google" id="createBtn">
                         Create Help Center
-                    </button>
-                    <button type="button" class="btn-google" onclick="window.open('https://www.anthropic.com/', '_blank')">
-                        I'm Feeling Lucky
                     </button>
                 </div>
                 
