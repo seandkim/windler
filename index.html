@@ -197,27 +197,32 @@
         }
 
         .btn-google {
-            background: #f8f9fa;
-            border: 1px solid #f8f9fa;
-            border-radius: 4px;
-            color: #3c4043;
+            background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+            border: none;
+            border-radius: 24px;
+            color: white;
             font-size: 14px;
-            padding: 10px 20px;
+            padding: 12px 24px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            font-weight: 400;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
         }
 
         .btn-google:hover {
-            box-shadow: 0 1px 1px rgba(0,0,0,.1);
-            background-color: #f1f3f4;
-            border: 1px solid #dadce0;
-            color: #202124;
+            background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
         }
 
         .btn-google:focus {
             outline: none;
-            border: 1px solid #4285f4;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn-google:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(139, 92, 246, 0.2);
         }
 
         .btn-primary {
