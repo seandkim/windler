@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Help with the Help Center - Anthropic</title>
+    <title>Help with the Help Center - Merge</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -44,22 +44,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
             margin-bottom: 40px;
         }
 
-        .logo svg {
+        .logo img {
             transition: transform 0.3s ease;
+            filter: brightness(0.1); /* Make the logo darker for better contrast */
         }
 
-        .logo:hover svg {
+        .logo:hover img {
             transform: scale(1.05);
-        }
-
-        .logo-text {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1a1a1a;
         }
 
         .title {
@@ -250,12 +244,11 @@
     <div class="container">
         <div class="main-card">
             <div class="logo">
-                <svg width="40" height="40" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="32" height="32" rx="16" fill="#1a1a1a"/>
-                    <path d="M16 8L20 12H18V20H14V12H12L16 8Z" fill="white"/>
-                    <circle cx="16" cy="22" r="2" fill="white"/>
-                </svg>
-                <span class="logo-text">Anthropic</span>
+                <img src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67b5ed56e63b65409a3f0fa6_merge-logo_bbl.svg" 
+                     alt="Merge Logo" 
+                     width="120" 
+                     height="40"
+                     style="object-fit: contain;">
             </div>
 
             <h1 class="title">Help with the Help Center</h1>
