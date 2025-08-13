@@ -149,10 +149,46 @@
             margin-bottom: 20px;
         }
 
+        .category-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .category-label {
+            font-size: 14px;
+            color: #70757a;
+            font-weight: 500;
+        }
+
+        .category-select {
+            padding: 8px 12px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            background: white;
+            font-size: 14px;
+            color: #3c4043;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 140px;
+        }
+
+        .category-select:hover {
+            border-color: #4285f4;
+        }
+
+        .category-select:focus {
+            outline: none;
+            border-color: #4285f4;
+            box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+        }
+
         .checkbox-container {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 16px;
         }
 
         .checkbox-label {
@@ -429,6 +465,19 @@
                     </button>
                 </div>
                 
+                <div class="category-container">
+                    <label for="categorySelect" class="category-label">Category:</label>
+                    <select id="categorySelect" class="category-select">
+                        <option value="HRIS" selected>HRIS</option>
+                        <option value="Accounting">Accounting</option>
+                        <option value="ATS">ATS</option>
+                        <option value="CRM">CRM</option>
+                        <option value="File storage">File storage</option>
+                        <option value="Ticketing">Ticketing</option>
+                        <option value="Knowledge Base">Knowledge Base</option>
+                    </select>
+                </div>
+                
                 <div class="checkbox-container">
                     <label class="checkbox-label">
                         <input type="checkbox" id="includeMerge" class="merge-checkbox" checked>
@@ -488,8 +537,9 @@
                 // Extract company info from URL
                 const companyInfo = extractCompanyInfo(url);
                 
-                // Get checkbox state
+                // Get form values
                 const includeMerge = document.getElementById('includeMerge').checked;
+                const category = document.getElementById('categorySelect').value;
 
                 // Show loading screen
                 showLoadingScreen(companyInfo.name);
@@ -501,7 +551,8 @@
                         company: companyInfo.name,
                         theme: companyInfo.theme,
                         url: url,
-                        includeMerge: includeMerge.toString()
+                        includeMerge: includeMerge.toString(),
+                        category: category
                     });
                     window.location.href = `hris-site.html?${params.toString()}`;
                 }, 3500); // 3.5 seconds loading time

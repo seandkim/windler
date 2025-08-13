@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const theme = urlParams.get('theme');
         const originalUrl = urlParams.get('url');
         const includeMerge = urlParams.get('includeMerge') === 'true';
+        const category = urlParams.get('category') || 'HRIS';
         
         if (company && theme) {
             // Update company branding
@@ -19,6 +20,9 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Handle Merge branding
             handleMergeBranding(includeMerge);
+            
+            // Update category-specific content
+            updateCategoryContent(category);
         }
     }
     
@@ -169,6 +173,138 @@ document.addEventListener('DOMContentLoaded', function() {
             if (poweredByElement) {
                 poweredByElement.style.display = 'none';
             }
+        }
+    }
+    
+    function updateCategoryContent(category) {
+        // Update page title to include category
+        const currentTitle = document.title;
+        if (currentTitle.includes('HRIS Connector')) {
+            document.title = currentTitle.replace('HRIS Connector', `${category} Connector`);
+        }
+        
+        // Update main heading
+        const heroTitle = document.querySelector('.hero-title');
+        if (heroTitle && heroTitle.textContent.includes('HRIS Integration')) {
+            heroTitle.textContent = `Seamless ${category} Integration`;
+        }
+        
+        // Update subtitle
+        const heroSubtitle = document.querySelector('.hero-subtitle');
+        if (heroSubtitle && heroSubtitle.textContent.includes('HR systems')) {
+            heroSubtitle.textContent = `Effortlessly connect your ${category} systems to unlock powerful insights from the data you already have.`;
+        }
+        
+        // Update section title
+        const sectionTitle = document.querySelector('.section-title');
+        if (sectionTitle && sectionTitle.textContent.includes('HRIS Connector')) {
+            sectionTitle.textContent = `Why Choose Our ${category} Connector?`;
+        }
+        
+        // Update feature descriptions based on category
+        updateFeatureDescriptions(category);
+        
+        // Update testimonial context
+        updateTestimonial(category);
+        
+        // Update CTA text
+        const ctaTitle = document.querySelector('.cta-content h2');
+        if (ctaTitle && ctaTitle.textContent.includes('HR data')) {
+            ctaTitle.textContent = `Ready to unlock your ${category} data insights?`;
+        }
+        
+        const ctaText = document.querySelector('.cta-content p');
+        if (ctaText && ctaText.textContent.includes('HRIS connector')) {
+            ctaText.textContent = `Join hundreds of companies already using our ${category} connector to make data-driven decisions.`;
+        }
+    }
+    
+    function updateFeatureDescriptions(category) {
+        const featureCards = document.querySelectorAll('.feature-card');
+        
+        const categoryFeatures = {
+            'HRIS': {
+                title1: 'Automated Sync',
+                desc1: 'Keep your HR data up-to-date with automatic synchronization that runs seamlessly in the background.',
+                title2: 'Enterprise Security', 
+                desc2: 'Bank-level encryption and compliance with industry standards to keep your sensitive HR data protected.',
+                title3: 'Powerful Analytics',
+                desc3: 'Transform raw HR data into actionable insights with our advanced analytics and reporting tools.'
+            },
+            'Accounting': {
+                title1: 'Real-time Sync',
+                desc1: 'Keep your financial data synchronized across all platforms with real-time updates.',
+                title2: 'Compliance Ready',
+                desc2: 'Built-in compliance features ensure your accounting data meets all regulatory requirements.',
+                title3: 'Financial Insights',
+                desc3: 'Generate comprehensive financial reports and analytics from your accounting data.'
+            },
+            'ATS': {
+                title1: 'Candidate Sync',
+                desc1: 'Automatically sync candidate information and application status across all recruiting platforms.',
+                title2: 'Data Privacy',
+                desc2: 'Ensure candidate data privacy with enterprise-grade security and GDPR compliance.',
+                title3: 'Hiring Analytics',
+                desc3: 'Track hiring metrics and optimize your recruitment process with detailed analytics.'
+            },
+            'CRM': {
+                title1: 'Contact Sync',
+                desc1: 'Keep customer and prospect data synchronized across all your sales and marketing tools.',
+                title2: 'Lead Security',
+                desc2: 'Protect sensitive customer information with advanced security measures and access controls.',
+                title3: 'Sales Analytics',
+                desc3: 'Gain insights into your sales pipeline and customer relationships with powerful analytics.'
+            },
+            'File storage': {
+                title1: 'File Sync',
+                desc1: 'Automatically sync files and documents across all connected storage platforms.',
+                title2: 'Access Control',
+                desc2: 'Manage file permissions and access controls with enterprise-grade security features.',
+                title3: 'Storage Analytics',
+                desc3: 'Monitor storage usage and file activity with comprehensive analytics and reporting.'
+            },
+            'Ticketing': {
+                title1: 'Ticket Sync',
+                desc1: 'Synchronize support tickets and customer issues across all your service platforms.',
+                title2: 'Data Security',
+                desc2: 'Protect customer support data with robust security measures and compliance features.',
+                title3: 'Support Analytics',
+                desc3: 'Analyze support metrics and improve customer service with detailed reporting tools.'
+            },
+            'Knowledge Base': {
+                title1: 'Content Sync',
+                desc1: 'Keep knowledge base articles and documentation synchronized across all platforms.',
+                title2: 'Content Security',
+                desc2: 'Secure your knowledge base content with advanced access controls and permissions.',
+                title3: 'Usage Analytics',
+                desc3: 'Track content usage and optimize your knowledge base with detailed analytics.'
+            }
+        };
+        
+        const features = categoryFeatures[category] || categoryFeatures['HRIS'];
+        
+        if (featureCards.length >= 3) {
+            const titles = featureCards[0].querySelectorAll('h3');
+            const descs = featureCards[0].querySelectorAll('p');
+            if (titles.length > 0) titles[0].textContent = features.title1;
+            if (descs.length > 0) descs[0].textContent = features.desc1;
+            
+            const titles2 = featureCards[1].querySelectorAll('h3');
+            const descs2 = featureCards[1].querySelectorAll('p');
+            if (titles2.length > 0) titles2[0].textContent = features.title2;
+            if (descs2.length > 0) descs2[0].textContent = features.desc2;
+            
+            const titles3 = featureCards[2].querySelectorAll('h3');
+            const descs3 = featureCards[2].querySelectorAll('p');
+            if (titles3.length > 0) titles3[0].textContent = features.title3;
+            if (descs3.length > 0) descs3[0].textContent = features.desc3;
+        }
+    }
+    
+    function updateTestimonial(category) {
+        const testimonialQuote = document.querySelector('.testimonial blockquote');
+        if (testimonialQuote && testimonialQuote.textContent.includes('HRIS data')) {
+            testimonialQuote.textContent = `"Integrating our ${category} data was a very smooth process. Everything worked perfectly, and we were able to unlock insights we never had access to before."`;
         }
     }
     // Smooth scrolling for anchor links
