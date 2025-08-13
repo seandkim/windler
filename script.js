@@ -23,20 +23,62 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function updateCompanyBranding(company) {
-        // Update logo text
-        const logoTexts = document.querySelectorAll('.logo-text');
-        logoTexts.forEach(logoText => {
-            logoText.textContent = company;
+        // Company logo mappings
+        const companyLogos = {
+            'Anthropic': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhIgFaMEZf1aVwkSk3h2TZ6H_By93QbsjL9A&s',
+            'Box': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOoSlNuPExUtkFGii6C7ebiTmbEPucO9P1-Q&s'
+        };
+
+        // Update logos with company-specific images
+        const navLogos = document.querySelectorAll('.nav-logo');
+        const footerLogos = document.querySelectorAll('.footer-logo');
+        
+        navLogos.forEach(navLogo => {
+            if (companyLogos[company]) {
+                // Replace SVG with company logo image
+                const svg = navLogo.querySelector('svg');
+                if (svg) {
+                    const logoImg = document.createElement('img');
+                    logoImg.src = companyLogos[company];
+                    logoImg.alt = `${company} Logo`;
+                    logoImg.style.width = '32px';
+                    logoImg.style.height = '32px';
+                    logoImg.style.objectFit = 'contain';
+                    svg.parentNode.replaceChild(logoImg, svg);
+                }
+            }
+            
+            // Update logo text
+            const logoText = navLogo.querySelector('.logo-text');
+            if (logoText) {
+                logoText.textContent = company;
+            }
+        });
+
+        footerLogos.forEach(footerLogo => {
+            if (companyLogos[company]) {
+                // Replace SVG with company logo image
+                const svg = footerLogo.querySelector('svg');
+                if (svg) {
+                    const logoImg = document.createElement('img');
+                    logoImg.src = companyLogos[company];
+                    logoImg.alt = `${company} Logo`;
+                    logoImg.style.width = '24px';
+                    logoImg.style.height = '24px';
+                    logoImg.style.objectFit = 'contain';
+                    svg.parentNode.replaceChild(logoImg, svg);
+                }
+            }
+            
+            // Update footer text
+            const footerText = footerLogo.querySelector('span');
+            if (footerText) {
+                footerText.textContent = `${company} HRIS Connector`;
+            }
         });
         
         // Update page title
         document.title = `${company} HRIS Connector - Seamless HR Data Integration`;
-        
-        // Update footer text
-        const footerLogo = document.querySelector('.footer-logo span');
-        if (footerLogo) {
-            footerLogo.textContent = `${company} HRIS Connector`;
-        }
         
         // Update powered by text
         const poweredBy = document.querySelector('.powered-by strong');
