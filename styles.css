@@ -114,6 +114,21 @@ p {
 
 .logo-text {
     font-size: 18px;
+    font-weight: 700;
+}
+
+.product-name {
+    font-size: 16px;
+    color: #6a6a6a;
+    font-weight: 400;
+    margin-left: 8px;
+    position: relative;
+}
+
+.product-name::before {
+    content: '•';
+    margin-right: 8px;
+    color: #e5e5e5;
 }
 
 .nav-links {
@@ -158,6 +173,20 @@ p {
     color: #6a6a6a;
     margin-bottom: 40px;
     line-height: 1.5;
+}
+
+.powered-by {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 32px;
+    font-size: 14px;
+    color: #8a8a8a;
+}
+
+.powered-by strong {
+    color: #1a1a1a;
+    font-weight: 600;
 }
 
 .hero-actions {
